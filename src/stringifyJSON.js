@@ -31,34 +31,22 @@ var stringifyJSON = function(obj) {
   }
 
   if (typeof obj === 'object') {
-    let result = {};
-    if (obj === {}) {
+    let result = [];
+
+    if (Object.keys(obj).length === 0) {
       return '{}';
     }
-    for(let key in obj) {
+
+    for (var key in obj) {
       if(typeof obj[key] === 'function' || typeof obj[key] === undefined) {
-         continue;
+        return '{}';
       }
-      result.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));   
-    }
+      result.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key])); 
+    }  
     return '{'+result.toString()+'}';
-  }
-
-  // if(typeof obj === 'number' || typeof obj === 'boolean' || typeof obj === 'string') {
-  //   return obj.toString();
-  // }
-   
-  // if (typeof obj === 'string' ) {
-  //   return '"' +obj + '"'
-  // }
+  } 
   
-  // return ''+obj
+  // return obj.toString()
 
-  
-  
- //
-
-
-  
 };
 //we need outcome to turn obj into a string
